@@ -323,20 +323,29 @@ footer .bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);
   <div class="container">
     <div class="eyebrow"><span class="num">05</span> 毛利率时间序列</div>
     <h2 class="title">廉价化的财务签名</h2>
-    <p class="lead">技术越发展，交付一单位产品所需的人/物/能越少，毛利率越高。这是"边际成本趋零"的直接镜像。</p>
+    <p class="lead">技术越发展，交付一单位产品所需的人/物/能越少，毛利率越高。这是"边际成本趋零"的直接镜像。AI-native 公司正在以前所未有的斜率重复这条曲线。</p>
 
     <div class="chart-box">
-      <div class="chart-title">毛利率 · 2016—2025 · 中美 7 家代表企业</div>
-      <div class="chart-sub">点击图例切换公司 · 鼠标悬停查看精确值 · 含最新 2025 财年数据</div>
+      <div class="chart-title">毛利率 · 2016—2025 · 中美代表企业 + AI-Native 公司</div>
+      <div class="chart-sub">点击图例切换公司 · 鼠标悬停查看精确值 · 含最新 2025 财年数据 · AI-Native 公司以虚线显示</div>
       <canvas id="chartGM"></canvas>
     </div>
 
     <div class="reading">
       <h3>关键规律</h3>
-      <p><strong>Meta (82%) > NVIDIA (75.5%) > Microsoft (70%) > Google (59%) > 腾讯 (54%) > Apple (47%) > 阿里 (39%)</strong></p>
+      <p><strong>成熟公司：Meta (82%) > NVIDIA (75.5%) > Microsoft (70%) > Google (59%) > 腾讯 (54%) > Apple (47%) > 阿里 (39%)</strong></p>
       <p>纯软件/广告模式天花板 80-85%（Meta）；硬件+服务混合 40-50%（Apple）；电商/物流 35-40%（阿里）。
       <strong>NVIDIA 作为"硬件公司"维持 75%+，是因为其本质已是设计+软件生态公司，台积电承担物理成本。</strong></p>
       <p>NVIDIA 的 FY2023 → FY2026 跳变（57% → 75.5%）堪称案例教学：当 AI 训练/推理需求远超供给时，"卖方议价权"直接兑现为毛利率跃升。FY2026 全年营收 $215.9B，相较 FY2025 的 $130.5B 增长 65%，而毛利率依然稳定在 75% 以上。</p>
+
+      <h3>AI-Native 公司：低起点，高斜率</h3>
+      <p><strong>Anthropic (15% → 40%) · OpenAI (15% → 26% → 33%)</strong></p>
+      <p>AI-native 公司当前毛利率远低于成熟科技公司，原因是推理成本（GPU 算力）占据收入极高比例。OpenAI 2025 年推理成本约 $8.4B，占收入 42%，毛利率仅 33%。但两个趋势正在快速改变这一局面：</p>
+      <ol style="margin: 12px 0 12px 20px; line-height: 2;">
+        <li><strong>模型效率指数级提升</strong>——同等质量的推理成本每年下降 ~10×（GPT-4 级能力的推理成本从 2023 年的 $60/M token 降至 2025 年的 $2/M token）</li>
+        <li><strong>收入增速远超算力增速</strong>——Anthropic 收入 2024→2025 增长约 5×，而算力支出增长约 2×，毛利率从 15% 跃升至 40%</li>
+      </ol>
+      <p><strong>关键洞察：AI-native 公司的毛利率曲线，本质上是"认知劳动廉价化"速度的实时刻度盘。</strong>当这些公司的毛利率攀升至 60-70%，意味着 AI 推理已充分廉价化——届时组织形态的颠覆将进入加速期。</p>
     </div>
   </div>
 </section>
@@ -728,7 +737,8 @@ const C = {
   steam: '#6B5B47', electric: '#C9A356', computer: '#5B7A8E', software: '#3D6B8E',
   internet: '#4A6B3F', mobile: '#8B5A87', ai: '#B8332A',
   nvidia: '#76B900', meta: '#0668E1', apple: '#555', msft: '#00A4EF',
-  google: '#34A853', tencent: '#1DA0F2', alibaba: '#FF6A00', bytedance: '#010101'
+  google: '#34A853', tencent: '#1DA0F2', alibaba: '#FF6A00', bytedance: '#010101',
+  openai: '#412991', anthropic: '#D4A574'
 };
 Chart.defaults.font.family = "'Inter', 'Noto Sans SC', sans-serif";
 Chart.defaults.font.size = 11;
@@ -823,7 +833,9 @@ new Chart(document.getElementById('chartGM'), {
       { label: 'Google', data: [61.0,59.1,56.5,55.6,53.6,56.9,55.4,56.6,58.2,59.0], borderColor: C.google, backgroundColor: C.google+'20', tension: .3, pointRadius: 4, borderWidth: 2.5 },
       { label: '腾讯', data: [49.3,48.7,45.5,44.6,46.5,43.7,43.5,50.4,53.0,53.8], borderColor: C.tencent, backgroundColor: C.tencent+'20', tension: .3, pointRadius: 4, borderWidth: 2.5 },
       { label: 'Apple', data: [39.1,38.5,38.3,37.8,38.2,41.8,43.3,44.1,46.2,46.9], borderColor: C.apple, backgroundColor: C.apple+'20', tension: .3, pointRadius: 4, borderWidth: 2.5 },
-      { label: '阿里巴巴', data: [57.5,52.8,44.8,43.0,43.6,40.8,37.5,35.6,38.2,39.0], borderColor: C.alibaba, backgroundColor: C.alibaba+'20', tension: .3, pointRadius: 4, borderWidth: 2.5 }
+      { label: '阿里巴巴', data: [57.5,52.8,44.8,43.0,43.6,40.8,37.5,35.6,38.2,39.0], borderColor: C.alibaba, backgroundColor: C.alibaba+'20', tension: .3, pointRadius: 4, borderWidth: 2.5 },
+      { label: 'OpenAI', data: [null,null,null,null,null,null,null,15,26,33], borderColor: C.openai, backgroundColor: C.openai+'20', tension: .3, pointRadius: 5, borderWidth: 2.5, borderDash: [6,3], spanGaps: false },
+      { label: 'Anthropic', data: [null,null,null,null,null,null,null,null,15,40], borderColor: C.anthropic, backgroundColor: C.anthropic+'20', tension: .3, pointRadius: 5, borderWidth: 2.5, borderDash: [6,3], spanGaps: false }
     ]
   },
   options: {
@@ -834,7 +846,7 @@ new Chart(document.getElementById('chartGM'), {
       tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.raw}%` } }
     },
     scales: {
-      y: { title: { display: true, text: '毛利率 (%)' }, grid: { color: '#EFE9DA' }, min: 30, max: 90, ticks: { callback: v => v+'%' } },
+      y: { title: { display: true, text: '毛利率 (%)' }, grid: { color: '#EFE9DA' }, min: 10, max: 90, ticks: { callback: v => v+'%' } },
       x: { grid: { color: '#EFE9DA' } }
     }
   }
